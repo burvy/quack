@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world!");
+    quack_app_lib::run()
 }

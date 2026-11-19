@@ -1,6 +1,10 @@
 [package]
 name = "quack-core"
-version = "0.1.0"
-edition = "2024"
+description = "Core for all parts of quack, won't touch anything visual, nor anything IO because this is pure functional"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 
 [dependencies]

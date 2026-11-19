@@ -1,6 +1,16 @@
 [package]
 name = "quack-app"
-version = "0.1.0"
-edition = "2024"
+description = "Tauri app, runs on desktop, Android"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+# rlib for desktop (rust compiled), cdylib for android (dynamically linked)
+# I don't have a Mac so I won't be using staticlib which is for IOS/Mac
+name = "quack_app_lib"
+crate-type = ["rlib", "cdylib"]
 
 [dependencies]
