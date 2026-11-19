@@ -8,7 +8,10 @@
       "cwd": "../quack-ui"
     },
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "trunk build",
+    "beforeBuildCommand": {
+      "script": "trunk build",
+      "cwd": "../quack-ui"
+    },
     "frontendDist": "../quack-ui/dist"
   },
   "app": {
