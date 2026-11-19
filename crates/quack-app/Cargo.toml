@@ -8,9 +8,13 @@ license.workspace = true
 repository.workspace = true
 
 [lib]
-# rlib for desktop (rust compiled), cdylib for android (dynamically linked)
-# I don't have a Mac so I won't be using staticlib which is for IOS/Mac
+# rlib for rust-linkable (rust compiled), cdylib for android (dynamically linked)
+# I don't have a Mac so I won't be using staticlib which is for IOS
 name = "quack_app_lib"
 crate-type = ["rlib", "cdylib"]
 
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
 [dependencies]
+tauri = { version = "2", features = [] }
