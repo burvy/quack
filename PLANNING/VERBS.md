@@ -1,5 +1,5 @@
 ## Actor
-Join { actor: Human | Agent { owner: Human } }
+Join { actor: Human | Agent { owner: actor_id } }
 Leave { actor }
 
 # Redact
@@ -31,12 +31,14 @@ Reopen { goal }
 ## Task
 Open { task }
 Edit { task }
-Close { task } # this only uses the task id
+Close { task } # this only uses the task id, attach note if you want
 Reopen { task }
+Assign { task, actor }
+Unassign { task, actor }
 # Other
 ## Note
-Add { note, thing } # allow notes to be attached onto verbs too
-Delete { note } # only uses the id
+Open { note, thing } # allow notes to be attached onto verbs too
+Close { note } # only uses the id
 # Understanding
 ## Know
 Open { know }
