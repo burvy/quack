@@ -3,3 +3,8 @@
 - Add a license [x]
 - We will need CSP to avoid people injecting scripts into our site, unset it from `null` later [ ]
 - Quack icons [ ]
+- Easy way to make and resolve issues in the app [ ]
+- Chat [ ]
+- Task Board, import/export github issues [ ]
+- Soft warning for assigning tasks outside of role [ ]
+- End-to-end encryption [ ]
