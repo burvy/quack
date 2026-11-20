@@ -1,0 +1,9 @@
+[build]
+target = "./index.html"
+
+[watch]
+watch = [".", "../quack-protocol"]
+
+[serve]
+port = 4080 # a duck number
+open = false
