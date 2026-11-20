@@ -1,6 +1,10 @@
 [package]
 name = "quack-protocol"
-version = "0.1.0"
-edition = "2024"
+description = "Allows core and app to call the same things and reference the same information"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 
 [dependencies]

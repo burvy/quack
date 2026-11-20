@@ -1,1 +1,4 @@
 /target
+crates/quack-app/gen/schemas
+crates/quack-ui/dist
+
