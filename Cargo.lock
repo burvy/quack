@@ -3077,6 +3077,9 @@ dependencies = [
 [[package]]
 name = "quack-core"
 version = "0.0.1"
+dependencies = [
+ "uuid",
+]
 
 [[package]]
 name = "quack-protocol"
