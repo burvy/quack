@@ -8,3 +8,4 @@
 - Task Board, import/export github issues [ ]
 - Soft warning for assigning tasks outside of role [ ]
 - End-to-end encryption [ ]
+- Instead of replaying the whole event log from the beginning to piece together the workplace state, cache it [ ]
