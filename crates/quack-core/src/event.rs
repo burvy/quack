@@ -2,11 +2,18 @@ use uuid::Uuid;
 
 // Actors
 
-/// A human or an agent owned by a human
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Actor {
+pub enum ActorEvent {
+    Join { id: ActorId, details: ActorDetails },
+    Leave { id: ActorId },
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct ActorId(pub Uuid);
+
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub struct ActorDetails {
     pub name: String,
-    pub id: ActorId,
     pub kind: ActorKind,
 }
 
@@ -16,19 +23,44 @@ pub enum ActorKind {
     Agent { owner: ActorId },
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct ActorId(pub Uuid);
-
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub enum ActorEvent {
-    Join { actor: Actor },
-    Leave { actor: ActorId },
-}
-
 // Tasks
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum TaskEvent {
+    Open {
+        id: TaskId,
+        details: TaskDetails,
+    },
+    Edit {
+        id: TaskId,
+        base: EventId,
+        details: TaskDetails,
+    },
+    Close {
+        id: TaskId,
+    },
+    Reopen {
+        id: TaskId,
+    },
+    Assign {
+        id: TaskId,
+        to: ActorId,
+    },
+    Unassign {
+        id: TaskId,
+        to: ActorId,
+    },
+}
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct TaskId(pub Uuid);
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct TaskDetails {
+    pub title: String,
+    pub description: String,
+    pub parent: Option<TaskId>,
+}
 
 // Notes
 
@@ -47,11 +79,12 @@ pub struct EventId(pub Uuid);
 pub struct Event {
     pub id: EventId,
     pub at: Timestamp,
-    pub actor: ActorId,
+    pub by: ActorId,
     pub kind: EventKind,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EventKind {
     Actor(ActorEvent),
+    Task(TaskEvent),
 }
