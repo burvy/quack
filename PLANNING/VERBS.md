@@ -1,6 +1,7 @@
 ## Actor
 Join { actor: Human | Agent { owner: actor_id } }
 Leave { actor }
+Rejoin { actor_id }
 
 # Redact
 ## Redact

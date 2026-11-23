@@ -4,15 +4,16 @@ use uuid::Uuid;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum ActorEvent {
-    Join { id: ActorId, details: ActorDetails },
+    Join { id: ActorId, info: ActorInfo },
     Leave { id: ActorId },
+    Rejoin { id: ActorId },
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct ActorId(pub Uuid);
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ActorDetails {
+pub struct ActorInfo {
     pub name: String,
     pub kind: ActorKind,
 }
@@ -29,12 +30,12 @@ pub enum ActorKind {
 pub enum TaskEvent {
     Open {
         id: TaskId,
-        details: TaskDetails,
+        info: TaskInfo,
     },
     Edit {
         id: TaskId,
         base: EventId,
-        details: TaskDetails,
+        info: TaskInfo,
     },
     Close {
         id: TaskId,
@@ -56,7 +57,7 @@ pub enum TaskEvent {
 pub struct TaskId(pub Uuid);
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct TaskDetails {
+pub struct TaskInfo {
     pub title: String,
     pub description: String,
     pub parent: Option<TaskId>,
@@ -68,7 +69,7 @@ pub struct TaskDetails {
 pub struct NoteId(pub Uuid);
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct NoteDetails {
+pub struct NoteInfo {
     pub targets: Vec<NoteTarget>,
     pub body: String,
 }
@@ -77,12 +78,12 @@ pub struct NoteDetails {
 pub enum NoteEvent {
     Open {
         id: NoteId,
-        details: NoteDetails,
+        info: NoteInfo,
     },
     Edit {
         id: NoteId,
         base: EventId,
-        details: NoteDetails,
+        info: NoteInfo,
     },
     Close {
         id: NoteId,
