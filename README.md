@@ -19,3 +19,5 @@ etc.
 The project is built in `tauri` and `leptos`, pure Rust. We will also follow a 
 functional style. Everything in `quack-core` must be purely functional with 
 anything IO outside.
+
+Planning items are in the `PLANNING/` folder.

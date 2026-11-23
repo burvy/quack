@@ -8,3 +8,4 @@ license.workspace = true
 repository.workspace = true
 
 [dependencies]
+uuid = "1.29.3"
