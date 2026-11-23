@@ -50,8 +50,32 @@ pub fn apply(state: State, event: &Event) -> State {
     }
 }
 
-fn apply_actor(state: State, event: &ActorEvent) -> State {
-    todo!()
+fn apply_actor(mut state: State, event: &ActorEvent) -> State {
+    match event {
+        ActorEvent::Join { id, info } => {
+            state.actors.insert(
+                *id,
+                Actor {
+                    id: *id,
+                    info: info.clone(),
+                    here: true,
+                },
+            );
+            state
+        }
+        ActorEvent::Leave { id } => {
+            if let Some(actor) = state.actors.get_mut(id) {
+                actor.here = false;
+            };
+            state
+        }
+        ActorEvent::Rejoin { id } => {
+            if let Some(actor) = state.actors.get_mut(id) {
+                actor.here = true;
+            };
+            state
+        }
+    }
 }
 fn apply_task(state: State, event: &TaskEvent) -> State {
     todo!()
