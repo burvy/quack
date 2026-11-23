@@ -1,4 +1,4 @@
-use std::collections::BTreeSet;
+use std::collections::{BTreeMap, BTreeSet};
 
 use super::event::*;
 
@@ -33,4 +33,15 @@ pub struct Note {
     pub id: NoteId,
     pub info: NoteInfo,
     pub open: bool,
+}
+
+#[derive(Default, Debug, Clone, PartialEq, Eq)]
+pub struct State {
+    pub tasks: BTreeMap<TaskId, Task>,
+    pub actors: BTreeMap<ActorId, Actor>,
+    pub notes: BTreeMap<NoteId, Note>,
+}
+
+pub fn apply(state: State, event: &Event) -> State {
+    todo!()
 }
