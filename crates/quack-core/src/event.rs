@@ -69,6 +69,7 @@ pub struct NoteId(pub Uuid);
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NoteDetails {
+    pub targets: Vec<NoteTarget>,
     pub body: String,
 }
 
@@ -76,13 +77,11 @@ pub struct NoteDetails {
 pub enum NoteEvent {
     Open {
         id: NoteId,
-        targets: Vec<NoteTarget>,
         details: NoteDetails,
     },
     Edit {
         id: NoteId,
         base: EventId,
-        targets: Vec<NoteTarget>,
         details: NoteDetails,
     },
     Close {
