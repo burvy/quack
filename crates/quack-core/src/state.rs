@@ -43,5 +43,19 @@ pub struct State {
 }
 
 pub fn apply(state: State, event: &Event) -> State {
+    match &event.kind {
+        EventKind::Actor(actor_event) => apply_actor(state, actor_event),
+        EventKind::Task(task_event) => apply_task(state, task_event),
+        EventKind::Note(note_event) => apply_note(state, note_event),
+    }
+}
+
+fn apply_actor(state: State, event: &ActorEvent) -> State {
+    todo!()
+}
+fn apply_task(state: State, event: &TaskEvent) -> State {
+    todo!()
+}
+fn apply_note(state: State, event: &NoteEvent) -> State {
     todo!()
 }
