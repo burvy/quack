@@ -88,6 +88,9 @@ pub enum NoteEvent {
     Close {
         id: NoteId,
     },
+    Reopen {
+        id: NoteId,
+    },
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]

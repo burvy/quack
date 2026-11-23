@@ -125,6 +125,36 @@ fn apply_task(mut state: State, event: &TaskEvent) -> State {
         }
     }
 }
-fn apply_note(state: State, event: &NoteEvent) -> State {
-    todo!()
+fn apply_note(mut state: State, event: &NoteEvent) -> State {
+    match event {
+        NoteEvent::Open { id, info } => {
+            state.notes.insert(
+                *id,
+                Note {
+                    id: *id,
+                    info: info.clone(),
+                    open: true,
+                },
+            );
+            state
+        }
+        NoteEvent::Edit { id, info, .. } => {
+            if let Some(note) = state.notes.get_mut(id) {
+                note.info = info.clone();
+            }
+            state
+        }
+        NoteEvent::Close { id } => {
+            if let Some(note) = state.notes.get_mut(id) {
+                note.open = false;
+            }
+            state
+        }
+        NoteEvent::Reopen { id } => {
+            if let Some(note) = state.notes.get_mut(id) {
+                note.open = true;
+            }
+            state
+        }
+    }
 }
