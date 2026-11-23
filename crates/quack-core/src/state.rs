@@ -52,6 +52,8 @@ pub fn apply(state: State, event: &Event) -> State {
 
 fn apply_actor(mut state: State, event: &ActorEvent) -> State {
     match event {
+        // TODO: An actor joining with an existing ID will
+        // overwrite the existing info. Please decide.
         ActorEvent::Join { id, info } => {
             state.actors.insert(
                 *id,
@@ -66,19 +68,62 @@ fn apply_actor(mut state: State, event: &ActorEvent) -> State {
         ActorEvent::Leave { id } => {
             if let Some(actor) = state.actors.get_mut(id) {
                 actor.here = false;
-            };
+            }
             state
         }
         ActorEvent::Rejoin { id } => {
             if let Some(actor) = state.actors.get_mut(id) {
                 actor.here = true;
-            };
+            }
             state
         }
     }
 }
-fn apply_task(state: State, event: &TaskEvent) -> State {
-    todo!()
+fn apply_task(mut state: State, event: &TaskEvent) -> State {
+    match event {
+        TaskEvent::Open { id, info } => {
+            state.tasks.insert(
+                *id,
+                Task {
+                    id: *id,
+                    info: info.clone(),
+                    open: true,
+                    crew: BTreeSet::new(),
+                },
+            );
+            state
+        }
+        TaskEvent::Edit { id, info, .. } => {
+            if let Some(task) = state.tasks.get_mut(id) {
+                task.info = info.clone();
+            }
+            state
+        }
+        TaskEvent::Close { id } => {
+            if let Some(task) = state.tasks.get_mut(id) {
+                task.open = false;
+            }
+            state
+        }
+        TaskEvent::Reopen { id } => {
+            if let Some(task) = state.tasks.get_mut(id) {
+                task.open = true;
+            }
+            state
+        }
+        TaskEvent::Assign { id, to } => {
+            if let Some(task) = state.tasks.get_mut(id) {
+                task.crew.insert(*to);
+            }
+            state
+        }
+        TaskEvent::Unassign { id, to } => {
+            if let Some(task) = state.tasks.get_mut(id) {
+                task.crew.remove(to);
+            }
+            state
+        }
+    }
 }
 fn apply_note(state: State, event: &NoteEvent) -> State {
     todo!()

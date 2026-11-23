@@ -10,3 +10,4 @@
 - End-to-end encryption [ ]
 - Instead of replaying the whole event log from the beginning to piece together the workplace state, cache it [ ]
 - Decide on what happens if two people try to save at the same time [ ]
+- Decide on what happens if an actor joins with the same ID [ ]
