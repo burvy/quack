@@ -40,6 +40,7 @@ Unassign { task, actor }
 ## Note
 Open { note, thing } # allow notes to be attached onto verbs too
 Close { note } # only uses the id
+Reopen { note, thing }
 # Understanding
 ## Know
 Open { know }
