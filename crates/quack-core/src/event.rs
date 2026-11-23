@@ -67,6 +67,37 @@ pub struct TaskDetails {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct NoteId(pub Uuid);
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct NoteDetails {
+    pub body: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum NoteEvent {
+    Open {
+        id: NoteId,
+        targets: Vec<NoteTarget>,
+        details: NoteDetails,
+    },
+    Edit {
+        id: NoteId,
+        base: EventId,
+        targets: Vec<NoteTarget>,
+        details: NoteDetails,
+    },
+    Close {
+        id: NoteId,
+    },
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum NoteTarget {
+    Actor(ActorId),
+    Task(TaskId),
+    Event(EventId),
+    Note(NoteId),
+}
+
 // Events
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
@@ -87,4 +118,5 @@ pub struct Event {
 pub enum EventKind {
     Actor(ActorEvent),
     Task(TaskEvent),
+    Note(NoteEvent),
 }
