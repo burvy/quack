@@ -6,7 +6,7 @@ the person editing the most recent version
 What happens on double-saving is yet to be decided. Check `TODO.md`.
 
 Only VERBS are saved in the log, and these nouns are rebuilt from them. 
-Occassionally a snapshot is built to load the current state. instead of replaying 
+Occasionally a snapshot is built to load the current state. instead of replaying 
 the entire event log.
 The snapshot is entirely disposable so you can rebuild it if it's lost or wrong.
 

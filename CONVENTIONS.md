@@ -1,6 +1,8 @@
 For branches, and always use branches:  
 `type/short-description`  
 
+Do tend to avoid pushing directly to main. It's convenient, but work in branches, usually.
+
 For commits:  
 Use Conventional Commits:  
 `type: message`  
