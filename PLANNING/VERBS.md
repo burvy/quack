@@ -38,9 +38,9 @@ Assign { task, actor }
 Unassign { task, actor }
 # Other
 ## Note
-Open { note, thing } # allow notes to be attached onto verbs too
+Open { note, info } # allow notes to be attached onto verbs too
 Close { note } # only uses the id
-Reopen { note, thing }
+Edit { note, base, info }
 Reopen { note }
 # Understanding
 ## Know
